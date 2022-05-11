@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Button } from "./Button";
 
 interface SideBarProps {
@@ -8,13 +9,29 @@ interface SideBarProps {
   }>;
   selectedGenreId: number;
   buttonClickCallback: (args: any) => void;
+  movies: Array<{
+    imdbID: string;
+    Title: string;
+    Poster: string;
+    Ratings: Array<{
+      Source: string;
+      Value: string;
+    }>;
+    Runtime: string;
+  }>;
 }
 
 export function SideBar({
   genres,
   selectedGenreId,
-  buttonClickCallback
+  buttonClickCallback,
+  movies
 }: SideBarProps) {
+  
+  const moviesCount = useMemo(() => {
+    return movies.length
+  }, [])
+
   return (
     <nav className="sidebar">
       <span>Watch<p>Me</p></span>
@@ -30,7 +47,10 @@ export function SideBar({
           />
         ))}
       </div>
-
+      
+      <div>
+        <p>Total de filmes: {moviesCount}</p>
+      </div>
     </nav>
   )
 }

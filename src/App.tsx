@@ -61,6 +61,7 @@ export function App() {
         genres={genres}
         selectedGenreId={selectedGenreId}
         buttonClickCallback={handleClickButton}
+        movies={movies}
       />
 
       <Content
